@@ -2,10 +2,18 @@ package com.example.helloandroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.helloandroid.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) { // iOSでいうviewDidLoad()的なやつ？
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view) // 画面レイアウトのファイルをここで読み込む
+
+        binding.tapHere.setOnClickListener {
+            binding.textView.text = "ボタンがタップされました"
+        }
     }
 }
